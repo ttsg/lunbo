@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			body {
+				perspective: 1200px;
+			}
+			.bbox {
+				margin: 300px auto;
+				height: 188px;
+				width: 200px;
+				position: relative;
+				transform-style: preserve-3d;
+				transform-origin: center ;
+				transition: all 3s ease;
+				/*background:red;*/
+			}
+			img {
+				width: 200px;
+				-webkit-box-reflect: below 20px;
+			}
+			.box {
+				height: 188px;
+				width: 300px;
+				position: absolute;
+				transform-origin: center center;
+			}
+		</style>
+	</head>
+	<body bgcolor='black'>
+		<div class='bbox'>
+			<div class="box box1"><img src="1.jpg" alt="" /></div>
+			<div class="box box2"><img src="2.jpg" alt='' /></div>
+			<div class="box box3"><img src="3.jpg" alt="" /></div>
+			<div class="box box4"><img src="4.jpg" alt="" /></div>
+			<div class="box box5"><img src="5.jpg" alt="" /></div>
+			<div class="box box6"><img src="6.jpg" alt="" /></div>
+			<div class="box box7"><img src="7.jpg" alt="" /></div>
+			<div class="box box8"><img src="8.jpg" alt="" /></div>
+		</div>
+	</body>
+	<script>
+		var box = document.querySelectorAll('.box');
+		var num = 0;
+		for (var i = 0; i < box.length; i++) {
+			num += 45;
+			box[i].style.transform = 'rotateY(' + num + 'deg) translateZ(400px)'
+		}
+		var bbox = document.querySelector('.bbox');
+		var num3 = 0;
+		var num4 = 0;
+		var num5 = 0;
+		var num6 = 0;
+		onmousedown = function(ev) {
+			var ev = ev || event;
+			num3 = ev.clientX;
+			num4 = ev.clientY;
+		}
+		onmouseup = function(ev) {
+			var ev = ev || event;
+			num5 = ev.clientX;
+			num6 = ev.clientY;
+			var numx = -(num3 - num5);
+			var numy = (num4 - num6);
+			num3 = 0;
+			num4 = 0;
+			num5 = 0;
+			num6 = 0;
+			bbox.style.transform = 'rotateY(' + numx + 'deg) rotateX(' + numy + 'deg)';
+		}
+
+		/*var bbox=document.querySelector('.bbox');
+		var num2=0;
+		var timer=setInterval(lun,30);
+		function lun(){
+			num2+=1
+		bbox.style.transform='rotateY('+num2+'deg)';
+		}*/
+	</script>
+
+</html>
